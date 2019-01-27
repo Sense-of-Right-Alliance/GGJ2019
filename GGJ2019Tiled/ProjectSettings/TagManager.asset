@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Through
   - Projectile
+  - Goal
   layers:
   - Default
   - TransparentFX

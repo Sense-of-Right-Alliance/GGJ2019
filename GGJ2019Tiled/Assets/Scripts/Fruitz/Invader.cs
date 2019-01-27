@@ -58,9 +58,12 @@ public class Invader : MonoBehaviour
         {
             OnHit();
         }
-        else if (col.gameObject.tag == "Player") // Player
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Goal") // Enter goal region! Winner!
         {
-            Debug.Log("Goal Region Entered!");
 
             player.HandleEnterGoalRegion();
         }
@@ -71,7 +74,5 @@ public class Invader : MonoBehaviour
         Instantiate<GameObject>(squashed, transform.position, Quaternion.identity);
 
         player.HandleInvaderKilled();
-
-        Destroy(gameObject);
     }
 }
