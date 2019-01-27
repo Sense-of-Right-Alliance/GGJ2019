@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FruitTurret : MonoBehaviour
+public class Turret : MonoBehaviour
 {
     public float shootTime = 2.0f;
     public GameObject projectilePrefab;
@@ -53,7 +53,7 @@ public class FruitTurret : MonoBehaviour
     {
         GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position, Quaternion.identity);
 
-        projectile.GetComponent<FruitProjectile>().SetDirection(direction);
+        projectile.GetComponent<Projectile>().SetDirection(direction);
 
         animator.SetTrigger("shoot");
     }

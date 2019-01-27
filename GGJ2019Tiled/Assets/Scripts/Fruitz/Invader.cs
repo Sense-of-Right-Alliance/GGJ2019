@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFruitPerson_v1 : MonoBehaviour
+public class Invader : MonoBehaviour
 {
     public float speed = 7;
     public GameObject squashed;
