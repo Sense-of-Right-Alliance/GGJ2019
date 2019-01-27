@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     enum PlayerState { Waiting, Invading, Placing };
     
-    public GameObject TurretPlacementPrefab;
     public GameManager GameManager { get; set; }
 
     PlayerState state = PlayerState.Waiting;
@@ -78,9 +77,9 @@ public class Player : MonoBehaviour
 
         Destroy(invader.gameObject);
 
-        turretPlacer = Instantiate<GameObject>(TurretPlacementPrefab, Vector3.zero, Quaternion.identity).GetComponent<TurretPlacementController>();
+        turretPlacer = new TurretPlacementController();
 
-        turretPlacer.StartPlacement(guardian);
+        turretPlacer.StartPlacement(guardian, this);
 
         state = PlayerState.Placing;
     }
@@ -93,5 +92,15 @@ public class Player : MonoBehaviour
         input.y = Input.GetAxis("Vertical");
 
         turretPlacer.UpdatePlacement(input);
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            turretPlacer.HandleAccept();
+        }
+    }
+
+    public void DonePlacement()
+    {
+        state = PlayerState.Waiting;
     }
 }

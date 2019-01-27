@@ -10,6 +10,8 @@ public class Guardian : MonoBehaviour
     public float shootTime = 2.0f;
     public GameObject projectilePrefab;
 
+    public bool Activated = false;
+
     private Animator animator;
     private float timer = 0.0f;
 
@@ -19,13 +21,6 @@ public class Guardian : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-    }
-
-    private void Start()
-    {
-        timer = shootTime;
-
-        SetDirection(Vector2.left);
     }
 
     public void SetDirection(Vector2 dir)
@@ -38,17 +33,23 @@ public class Guardian : MonoBehaviour
         //transform.right = look;
         float rot_z = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+
+        Activated = true;
+        timer = shootTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0.0f)
+        if (Activated)
         {
-            ShootProjectile();
+            timer -= Time.deltaTime;
+            if (timer <= 0.0f)
+            {
+                ShootProjectile();
 
-            timer = shootTime;
+                timer = shootTime;
+            }
         }
     }
 
