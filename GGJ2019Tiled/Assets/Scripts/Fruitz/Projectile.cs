@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FruitProjectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     public float speed = 15;
     public GameObject explosionPrefab;
