@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Fruitz;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    public Identity Identity { get; set; }
+
     public float shootTime = 2.0f;
     public GameObject projectilePrefab;
 

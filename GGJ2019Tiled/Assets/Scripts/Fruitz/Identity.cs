@@ -13,7 +13,7 @@ namespace Assets.Scripts.Fruitz
         public FruitType Type { get; set; }
         public int Score { get; set; }
 
-        public Identity GenerateNewIdentity()
+        public static Identity GenerateNewIdentity()
         {
             var type = SelectRandomType();
             var name = GenerateRandomName(type);

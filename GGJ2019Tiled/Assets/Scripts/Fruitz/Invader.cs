@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Fruitz;
 using UnityEngine;
 
 public class Invader : MonoBehaviour
 {
+    public Identity Identity { get; set; }
+
     public float speed = 7;
     public GameObject squashed;
 
