@@ -15,28 +15,30 @@ public class Invader : MonoBehaviour
 
     private float curSpeed;
 
+    private Player player;
+
     void OnEnable()
     {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void SetPlayer(Player p)
     {
-        Vector2 move = Vector2.zero;
-        // get input
-        move.x = Input.GetAxis("Horizontal");
-        move.y = Input.GetAxis("Vertical");
-        
+        player = p;
+    }
+
+    // Update is called once per frame
+    public void UpdateMovement(Vector2 input)
+    {
         // move it
-        Vector2 force = move * speed;
+        Vector2 force = input * speed;
 
         curSpeed = speed;
         rb2d.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("Horizontal") * curSpeed, 0.8f),
                                                 Mathf.Lerp(0, Input.GetAxis("Vertical") * curSpeed, 0.8f));
         // rotate to look direction 
-        Vector2 moveNorm = move.normalized;
+        Vector2 moveNorm = input.normalized;
         Vector3 look = new Vector3(moveNorm.x, moveNorm.y, 0.0f);
 
         if (force.magnitude > 0.01f) // only change direction if has input
@@ -56,12 +58,19 @@ public class Invader : MonoBehaviour
         {
             OnHit();
         }
+        else if (col.gameObject.tag == "Player") // Player
+        {
+            Debug.Log("Goal Region Entered!");
+
+            player.HandleEnterGoalRegion();
+        }
     }
 
     public void OnHit()
     {
-        //Debug.Log("PlayerFruitPerson -> ONHIT! OUCH!");
         Instantiate<GameObject>(squashed, transform.position, Quaternion.identity);
+
+        player.HandleInvaderKilled();
 
         Destroy(gameObject);
     }
