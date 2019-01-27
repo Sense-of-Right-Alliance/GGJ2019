@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class GoalRegion : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public TurretPlacementController placementController;
+
+    private void Awake()
     {
-        
+        if (placementController == null)
+        {
+            placementController = GameObject.Find("Turret Placement Controller").GetComponent<TurretPlacementController>();
+        }
     }
 
     // Update is called once per frame
@@ -19,6 +23,11 @@ public class GoalRegion : MonoBehaviour
     // when the GameObjects collider arrange for this GameObject to travel to the left of the screen
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Goal Region Entered!");
+        if (col.gameObject.tag == "Player") // Player
+        {
+            Debug.Log("Goal Region Entered!");
+
+            placementController.StartPlacement(); //col.gameObject.GetComponent<PlayerFruitPerson_v1>());
+        }
     }
 }

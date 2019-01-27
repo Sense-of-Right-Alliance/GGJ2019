@@ -41,11 +41,6 @@ public class FruitProjectile : MonoBehaviour
         OnHit();
     }
 
-    void HitPlayer(Collision2D col)
-    {
-        col.gameObject.GetComponent<PlayerFruitPerson>().OnHit();
-    }
-
     void OnHit()
     {
         Instantiate<GameObject>(explosionPrefab, transform.position, Quaternion.identity);
