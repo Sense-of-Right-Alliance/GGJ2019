@@ -17,6 +17,11 @@ namespace Assets.Scripts
         public List<Identity> Identities { get; private set; }
         public List<Player> Players { get; private set; }
 
+        public List<Identity> Leaderboard
+        {
+            get { return Identities.OrderByDescending(i => i.Score).ToList(); }
+        }
+
         public List<Transform> SpawnRegions
         {
             get { return SpawnRegionTransforms.ToList(); }
