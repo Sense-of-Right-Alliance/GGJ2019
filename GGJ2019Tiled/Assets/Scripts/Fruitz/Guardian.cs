@@ -55,9 +55,9 @@ public class Guardian : MonoBehaviour
 
     protected void ShootProjectile()
     {
-        GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-
-        projectile.GetComponent<Projectile>().SetDirection(direction);
+        var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        projectile.SetDirection(direction);
+        projectile.Guardian = this;
 
         animator.SetTrigger("shoot");
     }

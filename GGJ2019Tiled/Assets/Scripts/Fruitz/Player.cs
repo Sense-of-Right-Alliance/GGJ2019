@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    enum PlayerState { Waiting, Invading, Placing };
+    public enum PlayerState { Waiting, Invading, Placing };
     
     public GameManager GameManager { get; set; }
+
+    public PlayerState State
+    {
+        get { return state; }
+    }
 
     PlayerState state = PlayerState.Waiting;
     
