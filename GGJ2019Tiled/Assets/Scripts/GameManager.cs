@@ -37,7 +37,7 @@ namespace Assets.Scripts
 
         public Invader SpawnInvader()
         {
-            var spawnPoint = SpawnRegionTransforms[UnityEngine.Random.Range(0, SpawnRegionTransforms.Length)];
+            var spawnPoint = SpawnRegionTransforms[UnityEngine.Random.Range(0, SpawnRegionTransforms.Length - 1)];
 
             var identity = Identity.GenerateNewIdentity();
             Identities.Add(identity);
