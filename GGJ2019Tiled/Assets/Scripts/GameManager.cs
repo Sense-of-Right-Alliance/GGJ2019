@@ -14,7 +14,8 @@ namespace Assets.Scripts
         public GameObject OrangeGuardianPrefab;
         public GameObject OrangeInvaderPrefab;
 
-        public List<Identity> Identities { get; set; }
+        public List<Identity> Identities { get; private set; }
+        public List<Player> Players { get; private set; }
 
         public List<Transform> SpawnRegions
         {
@@ -24,6 +25,14 @@ namespace Assets.Scripts
         private void Awake()
         {
             Identities = new List<Identity>();
+
+            var player1 = gameObject.AddComponent<Player>();
+            player1.GameManager = this;
+
+            Players = new List<Player>
+            {
+                player1,
+            };
         }
 
         public Invader SpawnInvader()
