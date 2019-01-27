@@ -10,15 +10,19 @@ namespace Assets.Scripts.Fruitz
     {
         private Identity() { }
 
+        private static int MaxNumber = 1;
+
+        public int Number { get; set; }
         public string Name { get; set; }
         public FruitType Type { get; set; }
         public int Score { get; set; }
 
         public static Identity GenerateNewIdentity()
         {
+            var number = MaxNumber++;
             var type = SelectRandomType();
             var name = GenerateRandomName(type);
-            return new Identity() { Type = type, Name = name, Score = 0 };
+            return new Identity() { Number = number, Type = type, Name = name, Score = 0 };
         }
 
         private static FruitType SelectRandomType()
