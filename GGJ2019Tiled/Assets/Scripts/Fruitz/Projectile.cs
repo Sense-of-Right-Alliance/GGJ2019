@@ -7,6 +7,8 @@ public class Projectile : MonoBehaviour
     public float speed = 15;
     public GameObject explosionPrefab;
 
+    public Guardian Guardian { get; set; }
+
     protected Rigidbody2D rb2d;
 
     protected Vector2 direction = Vector2.left; // default...
@@ -39,6 +41,10 @@ public class Projectile : MonoBehaviour
     {
         //Debug.Log("FruitProjectile -> OnCollisionEnter2D ; " + col.gameObject.name + ", Tag " + col.gameObject.tag + ", Layer " + col.gameObject.layer);
         OnHit();
+        if (col.gameObject.tag == "Player") // Invader
+        {
+            Guardian.Identity.Score += 1;
+        }
     }
 
     void OnHit()

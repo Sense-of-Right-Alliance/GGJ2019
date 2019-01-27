@@ -59,6 +59,8 @@ namespace Assets.Scripts
 
         public Guardian SpawnGuardian(Identity identity)
         {
+            identity.Score += CalculateInvaderScore();
+
             var spawnPoint = GoalRegionTransform;
 
             GameObject clone;
@@ -74,6 +76,11 @@ namespace Assets.Scripts
             guardian.Identity = identity;
 
             return guardian;
+        }
+
+        private int CalculateInvaderScore()
+        {
+            return 1 + Identities.Count - Players.Count(p => p.State == Player.PlayerState.Invading);
         }
     }
 }
