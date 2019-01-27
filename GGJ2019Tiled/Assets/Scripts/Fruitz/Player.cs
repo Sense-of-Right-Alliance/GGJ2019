@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     
     public GameManager GameManager { get; set; }
 
+    public int inputID = 1; // or 2. Set by GameManager?
+
     public PlayerState State
     {
         get { return state; }
@@ -41,12 +43,17 @@ public class Player : MonoBehaviour
                 UpdatePlacing();
                 break;
         }
+
+        if (Input.GetButtonUp("Special" + inputID))
+        {
+            GameManager.TryEnd();
+        }
     }
 
     void UpdateWaiting()
     {
         // wait for player join
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump" + inputID))
         {
             NewIdentity();
             state = PlayerState.Invading; // move to next state
@@ -63,8 +70,8 @@ public class Player : MonoBehaviour
     {
         Vector2 move = Vector2.zero;
         // get input
-        move.x = Input.GetAxis("Horizontal");
-        move.y = Input.GetAxis("Vertical");
+        move.x = Input.GetAxis("Horizontal" + inputID);
+        move.y = Input.GetAxis("Vertical" + inputID);
 
         invader.UpdateMovement(move);
     }
@@ -95,12 +102,12 @@ public class Player : MonoBehaviour
     {
         Vector2 input = Vector2.zero;
         // get input
-        input.x = Input.GetAxis("Horizontal");
-        input.y = Input.GetAxis("Vertical");
+        input.x = Input.GetAxis("Horizontal" + inputID);
+        input.y = Input.GetAxis("Vertical" + inputID);
 
         turretPlacer.UpdatePlacement(input, Time.deltaTime);
 
-        if (Input.GetButtonUp("Jump"))
+        if (Input.GetButtonUp("Jump" + inputID))
         {
             turretPlacer.HandleAccept();
         }
