@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 12033351363546885}
   - component: {fileID: 304392661759878118}
   - component: {fileID: 5667297664508609184}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: OrangeTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}

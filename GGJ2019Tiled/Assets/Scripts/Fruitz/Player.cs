@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
         input.x = Input.GetAxis("Horizontal");
         input.y = Input.GetAxis("Vertical");
 
-        turretPlacer.UpdatePlacement(input);
+        turretPlacer.UpdatePlacement(input, Time.deltaTime);
 
         if (Input.GetButtonUp("Jump"))
         {

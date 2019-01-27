@@ -7,6 +7,7 @@ public class TurretPlacementController
     enum PlacementState { None, Positioning, Rotating };
 
     public float placeSpeed = 7.0f;
+    public float rotateSpeed = 7.0f;
 
     private PlacementState state = PlacementState.None;
 
@@ -33,7 +34,7 @@ public class TurretPlacementController
         state = PlacementState.Positioning;
     }
 
-    public void UpdatePlacement(Vector2 input)
+    public void UpdatePlacement(Vector2 input, float deltaTime)
     {
         switch(state)
         {
@@ -41,7 +42,7 @@ public class TurretPlacementController
                 UpdatePositioning(input);
                 break;
             case (PlacementState.Rotating):
-                UpdateRotating(input);
+                UpdateRotating(input, deltaTime);
                 break;
         }
     }
@@ -53,10 +54,7 @@ public class TurretPlacementController
 
         gBod.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("Horizontal") * placeSpeed, 0.8f),
                                                 Mathf.Lerp(0, Input.GetAxis("Vertical") * placeSpeed, 0.8f));
-    }
 
-    void UpdateRotating(Vector2 input)
-    {
         if (input.magnitude > 0.01f) // only change direction if has input
         {
             // rotate to look direction 
@@ -67,6 +65,30 @@ public class TurretPlacementController
 
             currentDir = input;
         }
+
+        // TODO: Don't collide with projectiles
+
+    }
+
+    void UpdateRotating(Vector2 input, float deltaTime)
+    {
+        // TODO: Rotate towards direction, not by look
+
+        float amount = rotateSpeed * input.x * -1; 
+
+        guardian.transform.RotateAround(guardian.transform.position, guardian.transform.forward, amount);
+
+        /*
+        // rotate to look direction 
+        Vector3 look = new Vector3(input.x, input.y, 0.0f);
+
+        float rot_z = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg;
+        guardian.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+            
+        currentDir = input;
+        */
+
+        currentDir = guardian.transform.up;
     }
 
     public void HandleAccept()
@@ -80,7 +102,7 @@ public class TurretPlacementController
                 state = PlacementState.Rotating;
                 break;
             case (PlacementState.Rotating):
-                guardian.SetDirection(currentDir);
+                guardian.SetDirection(currentDir.normalized);
 
                 state = PlacementState.None;
                 player.DonePlacement();
