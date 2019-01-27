@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     enum PlayerState { Waiting, Invading, Placing };
     
-    public GameManager gameManager;
+    public GameManager GameManager { get; set; }
 
     PlayerState state = PlayerState.Waiting;
     
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
 
     void NewIdentity()
     {
-        invader = gameManager.SpawnInvader();
+        invader = GameManager.SpawnInvader();
         invader.SetPlayer(this);
     }
 
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
 
     public void HandleEnterGoalRegion()
     {
-        guardian = gameManager.SpawnGuardian(invader.Identity);
+        guardian = GameManager.SpawnGuardian(invader.Identity);
 
         Destroy(invader.gameObject);
 
