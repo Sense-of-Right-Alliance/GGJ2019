@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretPlacementController : MonoBehaviour
+public class TurretPlacementController
 {
     enum PlacementState { None, Positioning, Rotating };
 
@@ -10,8 +10,11 @@ public class TurretPlacementController : MonoBehaviour
 
     private PlacementState state = PlacementState.None;
 
+    Player player;
     Guardian guardian;
     Rigidbody2D gBod;
+
+    Vector2 currentDir = Vector2.left;
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +22,13 @@ public class TurretPlacementController : MonoBehaviour
         
     }
 
-    public void StartPlacement(Guardian g)
+    public void StartPlacement(Guardian g, Player p)
     {
-        Debug.Log("TurretPlacementController -> Starting Placement!");
+        //Debug.Log("TurretPlacementController -> Starting Placement!");
 
+        player = p;
         guardian = g;
+        gBod = guardian.GetComponent<Rigidbody2D>();
 
         state = PlacementState.Positioning;
     }
@@ -52,10 +57,34 @@ public class TurretPlacementController : MonoBehaviour
 
     void UpdateRotating(Vector2 input)
     {
-        // rotate to look direction 
-        Vector3 look = new Vector3(input.x, input.y, 0.0f);
+        if (input.magnitude > 0.01f) // only change direction if has input
+        {
+            // rotate to look direction 
+            Vector3 look = new Vector3(input.x, input.y, 0.0f);
 
-        float rot_z = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+            float rot_z = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg;
+            guardian.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+
+            currentDir = input;
+        }
+    }
+
+    public void HandleAccept()
+    {
+        switch (state)
+        {
+            case (PlacementState.Positioning):
+                guardian.GetComponent<Collider2D>().enabled = false;
+                gBod.velocity = Vector2.zero;
+
+                state = PlacementState.Rotating;
+                break;
+            case (PlacementState.Rotating):
+                guardian.SetDirection(currentDir);
+
+                state = PlacementState.None;
+                player.DonePlacement();
+                break;
+        }
     }
 }

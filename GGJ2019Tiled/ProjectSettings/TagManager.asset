@@ -47,9 +47,15 @@ TagManager:
   - name: Main
     uniqueID: 1907945055
     locked: 0
+  - name: Dead
+    uniqueID: 3264808635
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Foreground
     uniqueID: 1632157909
+    locked: 0
+  - name: Projectile
+    uniqueID: 2269566193
     locked: 0
