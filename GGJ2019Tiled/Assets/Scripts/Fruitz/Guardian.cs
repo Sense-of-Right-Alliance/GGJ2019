@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Fruitz;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Guardian : MonoBehaviour
 {
     public Identity Identity { get; set; }
 

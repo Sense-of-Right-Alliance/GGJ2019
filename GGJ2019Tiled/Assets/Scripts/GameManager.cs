@@ -21,6 +21,11 @@ namespace Assets.Scripts
             get { return SpawnRegionTransforms.ToList(); }
         }
 
+        private void Awake()
+        {
+            Identities = new List<Identity>();
+        }
+
         public Invader SpawnInvader()
         {
             var spawnPoint = SpawnRegionTransforms[UnityEngine.Random.Range(0, SpawnRegionTransforms.Length)];
@@ -43,7 +48,7 @@ namespace Assets.Scripts
             return invader;
         }
 
-        public Turret SpawnGuardian(Identity identity)
+        public Guardian SpawnGuardian(Identity identity)
         {
             var spawnPoint = GoalRegionTransform;
 
@@ -56,7 +61,7 @@ namespace Assets.Scripts
                     break;
             }
 
-            var guardian = clone.GetComponent<Turret>();
+            var guardian = clone.GetComponent<Guardian>();
             guardian.Identity = identity;
 
             return guardian;

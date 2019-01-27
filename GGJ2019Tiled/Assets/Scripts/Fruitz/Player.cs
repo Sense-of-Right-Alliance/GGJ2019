@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.Fruitz;
+using Assets.Scripts;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,12 +8,12 @@ public class Player : MonoBehaviour
     enum PlayerState { Waiting, Invading, Placing };
     
     public GameObject TurretPlacementPrefab;
-
-    public Transform[] entrances;
+    public GameManager gameManager;
 
     PlayerState state = PlayerState.Waiting;
     
     private Invader invader;
+    private Guardian guardian;
     private TurretPlacementController turretPlacer;
 
     // Start is called before the first frame update
@@ -51,12 +51,7 @@ public class Player : MonoBehaviour
 
     void NewIdentity()
     {
-        Vector3 position = Vector3.zero;
-        if (entrances.Length > 0)
-        {
-            position = entrances[Mathf.Min(Random.Range(0, entrances.Length))].position;
-        }
-        //invader = GameManager.SpawnInvader();
+        invader = gameManager.SpawnInvader();
         invader.SetPlayer(this);
     }
 
@@ -72,12 +67,17 @@ public class Player : MonoBehaviour
 
     public void HandleInvaderKilled()
     {
-        state = PlayerState.Waiting; 
+        state = PlayerState.Waiting;
+
+        Destroy(invader.gameObject);
     }
 
     public void HandleEnterGoalRegion()
     {
-        //guardian = GameManager.SpawnGuardian(invader.identity);
+        guardian = gameManager.SpawnGuardian(invader.Identity);
+
+        Destroy(invader.gameObject);
+
         turretPlacer = Instantiate<GameObject>(TurretPlacementPrefab, Vector3.zero, Quaternion.identity).GetComponent<TurretPlacementController>();
 
         turretPlacer.StartPlacement(guardian);

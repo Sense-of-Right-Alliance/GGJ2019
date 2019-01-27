@@ -10,8 +10,8 @@ public class TurretPlacementController : MonoBehaviour
 
     private PlacementState state = PlacementState.None;
 
-    //Guardian guardian;
-    //RigidBody2d gBod;
+    Guardian guardian;
+    Rigidbody2D gBod;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +19,11 @@ public class TurretPlacementController : MonoBehaviour
         
     }
 
-    public void StartPlacement(/*Guardian g*/)
+    public void StartPlacement(Guardian g)
     {
-        //guardian = g;
         Debug.Log("TurretPlacementController -> Starting Placement!");
+
+        guardian = g;
 
         state = PlacementState.Positioning;
     }
@@ -45,9 +46,8 @@ public class TurretPlacementController : MonoBehaviour
         // move it
         Vector2 force = input * placeSpeed;
 
-
-        //gBod.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("Horizontal") * placeSpeed, 0.8f),
-        //                                        Mathf.Lerp(0, Input.GetAxis("Vertical") * placeSpeed, 0.8f));
+        gBod.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("Horizontal") * placeSpeed, 0.8f),
+                                                Mathf.Lerp(0, Input.GetAxis("Vertical") * placeSpeed, 0.8f));
     }
 
     void UpdateRotating(Vector2 input)
