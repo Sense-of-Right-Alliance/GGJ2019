@@ -40,7 +40,7 @@ public class PlayerFruitPerson_v1 : MonoBehaviour
         {
             //transform.right = look;
             float rot_z = Mathf.Atan2(look.y, look.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 45);//90);
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
         }
 
         animator.SetFloat("velocity", Mathf.Abs(force.magnitude) / speed);
