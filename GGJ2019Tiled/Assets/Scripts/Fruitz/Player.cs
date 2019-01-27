@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
     {
         state = PlayerState.Waiting;
 
+        GameManager.RemoveIdentity(invader.Identity);
+
         Destroy(invader.gameObject);
     }
 

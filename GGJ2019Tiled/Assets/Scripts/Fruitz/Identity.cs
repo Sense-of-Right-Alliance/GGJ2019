@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Assets.Scripts.Fruitz
 {
@@ -9,15 +10,19 @@ namespace Assets.Scripts.Fruitz
     {
         private Identity() { }
 
+        private static int MaxNumber = 1;
+
+        public int Number { get; set; }
         public string Name { get; set; }
         public FruitType Type { get; set; }
         public int Score { get; set; }
 
         public static Identity GenerateNewIdentity()
         {
+            var number = MaxNumber++;
             var type = SelectRandomType();
             var name = GenerateRandomName(type);
-            return new Identity() { Type = type, Name = name, Score = 0 };
+            return new Identity() { Number = number, Type = type, Name = name, Score = 0 };
         }
 
         private static FruitType SelectRandomType()
@@ -25,9 +30,19 @@ namespace Assets.Scripts.Fruitz
             return FruitType.Orange;
         }
 
+        private static List<string> RandomOrangeNames = new List<string>()
+        {
+            "Orangey Porangey",
+        };
+
         private static string GenerateRandomName(FruitType type)
         {
-            return "Orangey Porangey";
+            switch (type)
+            {
+                case FruitType.Orange:
+                default:
+                    return RandomOrangeNames[UnityEngine.Random.Range(0, RandomOrangeNames.Count - 1)];
+            }
         }
     }
 }

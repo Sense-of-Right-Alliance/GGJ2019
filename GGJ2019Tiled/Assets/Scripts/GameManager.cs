@@ -17,6 +17,11 @@ namespace Assets.Scripts
         public List<Identity> Identities { get; private set; }
         public List<Player> Players { get; private set; }
 
+        public List<Identity> Leaderboard
+        {
+            get { return Identities.OrderByDescending(i => i.Score).ToList(); }
+        }
+
         public List<Transform> SpawnRegions
         {
             get { return SpawnRegionTransforms.ToList(); }
@@ -37,7 +42,7 @@ namespace Assets.Scripts
 
         public Invader SpawnInvader()
         {
-            var spawnPoint = SpawnRegionTransforms[UnityEngine.Random.Range(0, SpawnRegionTransforms.Length)];
+            var spawnPoint = SpawnRegionTransforms[UnityEngine.Random.Range(0, SpawnRegionTransforms.Length - 1)];
 
             var identity = Identity.GenerateNewIdentity();
             Identities.Add(identity);
@@ -76,6 +81,11 @@ namespace Assets.Scripts
             guardian.Identity = identity;
 
             return guardian;
+        }
+
+        public void RemoveIdentity(Identity identity)
+        {
+            Identities.Remove(identity);
         }
 
         private int CalculateInvaderScore()
