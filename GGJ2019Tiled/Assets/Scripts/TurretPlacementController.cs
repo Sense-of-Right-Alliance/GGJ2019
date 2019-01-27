@@ -52,8 +52,8 @@ public class TurretPlacementController
         // move it
         Vector2 force = input * placeSpeed;
 
-        gBod.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("Horizontal") * placeSpeed, 0.8f),
-                                                Mathf.Lerp(0, Input.GetAxis("Vertical") * placeSpeed, 0.8f));
+        gBod.velocity = new Vector2(Mathf.Lerp(0, input.x * placeSpeed, 0.8f),
+                                                Mathf.Lerp(0, input.y * placeSpeed, 0.8f));
 
         if (input.magnitude > 0.01f) // only change direction if has input
         {

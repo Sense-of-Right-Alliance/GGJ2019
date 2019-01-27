@@ -35,8 +35,8 @@ public class Invader : MonoBehaviour
         Vector2 force = input * speed;
 
         curSpeed = speed;
-        rb2d.velocity = new Vector2(Mathf.Lerp(0, Input.GetAxis("Horizontal") * curSpeed, 0.8f),
-                                                Mathf.Lerp(0, Input.GetAxis("Vertical") * curSpeed, 0.8f));
+        rb2d.velocity = new Vector2(Mathf.Lerp(0, input.x * curSpeed, 0.8f),
+                                                Mathf.Lerp(0, input.y * curSpeed, 0.8f));
         // rotate to look direction 
         Vector2 moveNorm = input.normalized;
         Vector3 look = new Vector3(moveNorm.x, moveNorm.y, 0.0f);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Assets.Scripts.Fruitz;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -13,9 +14,12 @@ namespace Assets.Scripts
         public Transform GoalRegionTransform;
         public GameObject OrangeGuardianPrefab;
         public GameObject OrangeInvaderPrefab;
+        public GameObject ScoreObjectPrefab;
 
         public List<Identity> Identities { get; private set; }
         public List<Player> Players { get; private set; }
+
+        public UIManager UIManager;
 
         public List<Identity> Leaderboard
         {
@@ -91,6 +95,33 @@ namespace Assets.Scripts
         private int CalculateInvaderScore()
         {
             return 1 + Identities.Count - Players.Count(p => p.State == Player.PlayerState.Invading);
+        }
+
+        bool confirming = false;
+        public void TryEnd()
+        {
+            if (!confirming)
+            {
+                confirming = true;
+                ShowConfirmEnd();
+            }
+            else
+            {
+                confirming = false;
+                Score scoreObject = Instantiate<GameObject>(ScoreObjectPrefab, Vector2.zero, Quaternion.identity).GetComponent<Score>();
+                scoreObject.SetScores(Leaderboard);
+
+                SceneManager.LoadScene("EndScene");//, LoadSceneMode.Additive);
+            }
+        }
+        private void ShowConfirmEnd()
+        {
+            if (UIManager == null)
+            {
+                UIManager = GetComponent<UIManager>();
+            }
+
+            UIManager.ShowConfirmEnd();
         }
     }
 }
