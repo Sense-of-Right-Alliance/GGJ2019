@@ -17,10 +17,11 @@ public class Player : MonoBehaviour
     }
 
     PlayerState state = PlayerState.Waiting;
-    
+
+    private PlayerNameText nameText;
     private Invader invader;
     private Guardian guardian;
-    private TurretPlacementController turretPlacer;
+    private GuardianPlacementController turretPlacer;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +65,9 @@ public class Player : MonoBehaviour
     {
         invader = GameManager.SpawnInvader();
         invader.SetPlayer(this);
+
+        nameText = GameManager.SpawnNameText();
+        nameText.Set(invader.transform, invader.Identity);
     }
 
     void UpdateInvading()
@@ -82,16 +86,18 @@ public class Player : MonoBehaviour
 
         GameManager.RemoveIdentity(invader.Identity);
 
+        Destroy(nameText.gameObject);
         Destroy(invader.gameObject);
     }
 
     public void HandleEnterGoalRegion()
     {
         guardian = GameManager.SpawnGuardian(invader.Identity);
+        nameText.Set(guardian.transform, invader.Identity);
 
         Destroy(invader.gameObject);
 
-        turretPlacer = new TurretPlacementController();
+        turretPlacer = new GuardianPlacementController();
 
         turretPlacer.StartPlacement(guardian, this);
 

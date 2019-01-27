@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretPlacementController
+public class GuardianPlacementController
 {
     enum PlacementState { None, Positioning, Rotating };
 
@@ -74,7 +74,7 @@ public class TurretPlacementController
     {
         // TODO: Rotate towards direction, not by look
 
-        float amount = rotateSpeed * input.x * -1; 
+        float amount = rotateSpeed * ((input.x * -1) + input.y); 
 
         guardian.transform.RotateAround(guardian.transform.position, guardian.transform.forward, amount);
 

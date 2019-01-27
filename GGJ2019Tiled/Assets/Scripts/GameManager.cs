@@ -16,6 +16,8 @@ namespace Assets.Scripts
         public GameObject OrangeInvaderPrefab;
         public GameObject ScoreObjectPrefab;
 
+        public GameObject NamePrefab;
+
         public List<Identity> Identities { get; private set; }
         public List<Player> Players { get; private set; }
 
@@ -42,6 +44,11 @@ namespace Assets.Scripts
             {
                 player1,
             };
+        }
+
+        public PlayerNameText SpawnNameText()
+        {
+            return Instantiate(NamePrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerNameText>();
         }
 
         public Invader SpawnInvader()

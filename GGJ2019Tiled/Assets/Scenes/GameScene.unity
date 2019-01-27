@@ -6676,6 +6676,8 @@ MonoBehaviour:
     type: 3}
   ScoreObjectPrefab: {fileID: 6385234671041878109, guid: 0ac748a4108e4e04d97bf9b9d8be4c0e,
     type: 3}
+  NamePrefab: {fileID: 7995875061781720525, guid: 3223b57d4fb49ca4a8b116a964993716,
+    type: 3}
   UIManager: {fileID: 0}
 --- !u!4 &1981304938
 Transform:
