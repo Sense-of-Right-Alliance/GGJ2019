@@ -78,6 +78,11 @@ namespace Assets.Scripts
             return guardian;
         }
 
+        public void RemoveIdentity(Identity identity)
+        {
+            Identities.Remove(identity);
+        }
+
         private int CalculateInvaderScore()
         {
             return 1 + Identities.Count - Players.Count(p => p.State == Player.PlayerState.Invading);
