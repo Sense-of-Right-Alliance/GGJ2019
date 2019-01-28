@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  squashed: {fileID: 6698446695289573216, guid: 199275ffab385be488e316a03511f93d,
+  squashed: {fileID: 6698446695289573216, guid: d6fd7607904f0e3458787b8611a91608,
     type: 3}
 --- !u!58 &7905186522043433566
 CircleCollider2D:
