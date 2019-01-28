@@ -21,6 +21,8 @@ public class Guardian : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
+
+        alphaTime = 0.0f;
     }
 
     public void SetDirection(Vector2 dir)
@@ -36,10 +38,14 @@ public class Guardian : MonoBehaviour
 
         Activated = true;
         timer = shootTime;
+        
+        Color tmp = GetComponent<SpriteRenderer>().color;
+        tmp.a = 1f;
+        GetComponent<SpriteRenderer>().color = tmp;
     }
 
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {
         if (Activated)
         {
@@ -51,6 +57,10 @@ public class Guardian : MonoBehaviour
                 timer = shootTime;
             }
         }
+        else
+        {
+            UpdateAlphaFlash();
+        }
     }
 
     protected void ShootProjectile()
@@ -60,5 +70,15 @@ public class Guardian : MonoBehaviour
         projectile.Guardian = this;
 
         animator.SetTrigger("shoot");
+    }
+
+    float alphaTime = 0.0f;
+    protected void UpdateAlphaFlash()
+    {
+        alphaTime += Time.deltaTime * 6;
+
+        Color tmp = GetComponent<SpriteRenderer>().color;
+        tmp.a = 0.3f + 0.3f * (1 + (0.5f * Mathf.Sin(alphaTime)));
+        GetComponent<SpriteRenderer>().color = tmp;
     }
 }
