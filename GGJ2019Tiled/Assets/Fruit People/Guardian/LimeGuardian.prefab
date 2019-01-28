@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootTime: 2
-  projectilePrefab: {fileID: 2932711735601812379, guid: 0b3972f779e37974da968795542c8a16,
+  projectilePrefab: {fileID: 2932711735601812379, guid: 75211ca212b8f3241ad41cd21d024be0,
     type: 3}
   Activated: 0
 --- !u!95 &12033351363546885
