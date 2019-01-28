@@ -6674,6 +6674,14 @@ MonoBehaviour:
     type: 3}
   OrangeInvaderPrefab: {fileID: 7905186522043433560, guid: dfcdd0976d3722b45840b8e7bddf5eec,
     type: 3}
+  BananaGuardianPrefab: {fileID: 12033351363547001, guid: 58cf016462b04c241bd9aab1b597d1bd,
+    type: 3}
+  BananaInvaderPrefab: {fileID: 7905186522043433560, guid: c44b5be6fbdab61469d9b625202bb319,
+    type: 3}
+  LimeGuardianPrefab: {fileID: 12033351363547001, guid: 2101eea2f30c03e4bad594b3fc28fc86,
+    type: 3}
+  LimeInvaderPrefab: {fileID: 7905186522043433560, guid: f4c76a7d15a96674bb425d73c37e9913,
+    type: 3}
   ScoreObjectPrefab: {fileID: 6385234671041878109, guid: 0ac748a4108e4e04d97bf9b9d8be4c0e,
     type: 3}
   NamePrefab: {fileID: 7995875061781720525, guid: 3223b57d4fb49ca4a8b116a964993716,
