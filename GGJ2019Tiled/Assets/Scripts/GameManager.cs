@@ -14,6 +14,8 @@ namespace Assets.Scripts
         public Transform GoalRegionTransform;
         public GameObject OrangeGuardianPrefab;
         public GameObject OrangeInvaderPrefab;
+        public GameObject StrawberryGuardianPrefab;
+        public GameObject StrawberryInvaderPrefab;
         public GameObject BananaGuardianPrefab;
         public GameObject BananaInvaderPrefab;
         public GameObject LimeGuardianPrefab;
@@ -78,6 +80,9 @@ namespace Assets.Scripts
             GameObject prefab;
             switch (identity.Type)
             {
+                case FruitType.Strawberry:
+                    prefab = StrawberryInvaderPrefab;
+                    break;
                 case FruitType.Banana:
                     prefab = BananaInvaderPrefab;
                     break;
@@ -111,6 +116,9 @@ namespace Assets.Scripts
             GameObject prefab;
             switch (identity.Type)
             {
+                case FruitType.Strawberry:
+                    prefab = StrawberryGuardianPrefab;
+                    break;
                 case FruitType.Banana:
                     prefab = BananaGuardianPrefab;
                     break;

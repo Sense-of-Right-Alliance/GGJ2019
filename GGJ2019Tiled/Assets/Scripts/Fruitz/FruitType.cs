@@ -9,7 +9,7 @@ namespace Assets.Scripts.Fruitz
     {
         Orange,
         Banana,
-        Pineapple,
+        Strawberry,
         Lime,
     }
 }
