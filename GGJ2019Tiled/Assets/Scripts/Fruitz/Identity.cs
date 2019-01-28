@@ -27,7 +27,7 @@ namespace Assets.Scripts.Fruitz
 
         private static FruitType SelectRandomType()
         {
-            switch (UnityEngine.Random.Range(0, 2))
+            switch (UnityEngine.Random.Range(0, 3))
             {
                 case 0:
                     return FruitType.Orange;
@@ -35,6 +35,8 @@ namespace Assets.Scripts.Fruitz
                     return FruitType.Lime;
                 case 2:
                     return FruitType.Banana;
+                case 3:
+                    return FruitType.Strawberry;
                 default:
                     return FruitType.Orange;
             }

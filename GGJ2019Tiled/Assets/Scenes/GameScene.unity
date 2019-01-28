@@ -2366,8 +2366,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1103984469}
   m_HandleRect: {fileID: 1103984468}
   m_Direction: 2
-  m_Value: 0.9999999
-  m_Size: 0.1285546
+  m_Value: 0.99999976
+  m_Size: 0.50883394
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7145,6 +7145,10 @@ MonoBehaviour:
   OrangeGuardianPrefab: {fileID: 12033351363547001, guid: 271725a24a9c67041a9b6ed90cce1214,
     type: 3}
   OrangeInvaderPrefab: {fileID: 7905186522043433560, guid: dfcdd0976d3722b45840b8e7bddf5eec,
+    type: 3}
+  StrawberryGuardianPrefab: {fileID: 12033351363547001, guid: 556efa7acd9e8cc4b9f3ec5f63672fe3,
+    type: 3}
+  StrawberryInvaderPrefab: {fileID: 7905186522043433560, guid: 4f2a42ed4eb4704448ca748199cf0f81,
     type: 3}
   BananaGuardianPrefab: {fileID: 12033351363547001, guid: 58cf016462b04c241bd9aab1b597d1bd,
     type: 3}
