@@ -53,6 +53,18 @@ namespace Assets.Scripts
             };
         }
 
+        void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.Return))
+            {
+                TryEnd();
+            }
+            else if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+
         public PlayerNameText SpawnNameText()
         {
             return Instantiate(NamePrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerNameText>();
@@ -85,6 +97,12 @@ namespace Assets.Scripts
 
             var invader = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation).GetComponent<Invader>();
             invader.Identity = identity;
+
+            AudioSource audioSource = GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
 
             return invader;
         }

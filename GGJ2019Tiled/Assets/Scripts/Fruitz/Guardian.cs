@@ -70,6 +70,12 @@ public class Guardian : MonoBehaviour
         projectile.Guardian = this;
 
         animator.SetTrigger("shoot");
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 
     float alphaTime = 0.0f;
