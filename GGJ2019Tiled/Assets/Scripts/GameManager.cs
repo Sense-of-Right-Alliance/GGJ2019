@@ -53,11 +53,11 @@ namespace Assets.Scripts
 
         void Update()
         {
-            if (Input.GetButtonUp("Submit"))
+            if (Input.GetKeyUp(KeyCode.Return))
             {
                 TryEnd();
             }
-            else if (Input.GetButtonUp("Cancel"))
+            else if (Input.GetKeyUp(KeyCode.Escape))
             {
                 Application.Quit();
             }
@@ -92,6 +92,12 @@ namespace Assets.Scripts
 
             var invader = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation).GetComponent<Invader>();
             invader.Identity = identity;
+
+            AudioSource audioSource = GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
 
             return invader;
         }

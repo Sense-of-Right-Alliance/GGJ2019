@@ -71,12 +71,6 @@ public class Invader : MonoBehaviour
 
     public void OnHit()
     {
-        AudioSource audioSource = GetComponent<AudioSource>();
-        if (audioSource != null)
-        {
-            audioSource.Play();
-        }
-
         Instantiate<GameObject>(squashed, transform.position, Quaternion.identity);
         player.HandleInvaderKilled();
     }
