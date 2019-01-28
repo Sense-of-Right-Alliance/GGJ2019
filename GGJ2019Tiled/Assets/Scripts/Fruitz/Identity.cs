@@ -12,6 +12,7 @@ namespace Assets.Scripts.Fruitz
         private Identity() { }
 
         private static int MaxNumber = 1;
+        private static Queue<FruitType> FruitChute = new Queue<FruitType>();
 
         public int Number { get; set; }
         public string Name { get; set; }
@@ -26,21 +27,22 @@ namespace Assets.Scripts.Fruitz
             return new Identity() { Number = number, Type = type, Name = name, Score = 0 };
         }
 
+        private static void RefillFruitChute()
+        {
+            var fruitBowl = new FruitType[] {FruitType.Orange, FruitType.Banana, FruitType.Lime, FruitType.Strawberry}
+                .OrderBy(f => UnityEngine.Random.Range(0f, 1f));
+
+            FruitChute = new Queue<FruitType>(fruitBowl);
+        }
+
         private static FruitType SelectRandomType()
         {
-            switch (UnityEngine.Random.Range(0, 3))
+            if (FruitChute.Count == 0)
             {
-                case 0:
-                    return FruitType.Orange;
-                case 1:
-                    return FruitType.Lime;
-                case 2:
-                    return FruitType.Banana;
-                case 3:
-                    return FruitType.Strawberry;
-                default:
-                    return FruitType.Orange;
+                RefillFruitChute();
             }
+
+            return FruitChute.Dequeue();
         }
 
         private static List<string> RandomNames = new List<string>()
