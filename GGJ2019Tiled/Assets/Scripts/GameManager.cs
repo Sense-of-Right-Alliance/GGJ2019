@@ -14,6 +14,10 @@ namespace Assets.Scripts
         public Transform GoalRegionTransform;
         public GameObject OrangeGuardianPrefab;
         public GameObject OrangeInvaderPrefab;
+        public GameObject BananaGuardianPrefab;
+        public GameObject BananaInvaderPrefab;
+        public GameObject LimeGuardianPrefab;
+        public GameObject LimeInvaderPrefab;
         public GameObject ScoreObjectPrefab;
 
         public GameObject NamePrefab;
@@ -58,16 +62,22 @@ namespace Assets.Scripts
             var identity = Identity.GenerateNewIdentity();
             Identities.Add(identity);
 
-            GameObject clone;
+            GameObject prefab;
             switch (identity.Type)
             {
+                case FruitType.Banana:
+                    prefab = BananaInvaderPrefab;
+                    break;
+                case FruitType.Lime:
+                    prefab = LimeInvaderPrefab;
+                    break;
                 case FruitType.Orange:
                 default:
-                    clone = Instantiate(OrangeInvaderPrefab, spawnPoint.position, spawnPoint.rotation);
+                    prefab = OrangeInvaderPrefab;
                     break;
             }
 
-            var invader = clone.GetComponent<Invader>();
+            var invader = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation).GetComponent<Invader>();
             invader.Identity = identity;
 
             return invader;
@@ -79,16 +89,22 @@ namespace Assets.Scripts
 
             var spawnPoint = GoalRegionTransform;
 
-            GameObject clone;
+            GameObject prefab;
             switch (identity.Type)
             {
+                case FruitType.Banana:
+                    prefab = BananaGuardianPrefab;
+                    break;
+                case FruitType.Lime:
+                    prefab = LimeGuardianPrefab;
+                    break;
                 case FruitType.Orange:
                 default:
-                    clone = Instantiate(OrangeGuardianPrefab, spawnPoint.position, spawnPoint.rotation);
+                    prefab = OrangeGuardianPrefab;
                     break;
             }
 
-            var guardian = clone.GetComponent<Guardian>();
+            var guardian = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation).GetComponent<Guardian>();
             guardian.Identity = identity;
 
             return guardian;
