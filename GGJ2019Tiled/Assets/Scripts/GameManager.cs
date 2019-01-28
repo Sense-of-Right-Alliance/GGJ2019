@@ -17,6 +17,7 @@ namespace Assets.Scripts
         public GameObject ScoreObjectPrefab;
 
         public GameObject NamePrefab;
+        public ScoreBox ScoreboardDisplay;
 
         public List<Identity> Identities { get; private set; }
         public List<Player> Players { get; private set; }
@@ -129,6 +130,11 @@ namespace Assets.Scripts
             }
 
             UIManager.ShowConfirmEnd();
+        }
+
+        public void UpdateScoreBoard()
+        {
+            ScoreboardDisplay.SetScore(Leaderboard);
         }
     }
 }

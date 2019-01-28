@@ -88,6 +88,8 @@ public class Player : MonoBehaviour
 
         Destroy(nameText.gameObject);
         Destroy(invader.gameObject);
+
+        GameManager.UpdateScoreBoard();
     }
 
     public void HandleEnterGoalRegion()
@@ -122,5 +124,7 @@ public class Player : MonoBehaviour
     public void DonePlacement()
     {
         state = PlayerState.Waiting;
+
+        GameManager.UpdateScoreBoard();
     }
 }
