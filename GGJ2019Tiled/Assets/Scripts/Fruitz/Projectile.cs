@@ -49,6 +49,12 @@ public class Projectile : MonoBehaviour
 
     void OnHit()
     {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+
         Instantiate<GameObject>(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

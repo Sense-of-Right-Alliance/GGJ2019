@@ -44,11 +44,6 @@ public class Player : MonoBehaviour
                 UpdatePlacing();
                 break;
         }
-
-        if (Input.GetButtonUp("Special" + inputID))
-        {
-            GameManager.TryEnd();
-        }
     }
 
     void UpdateWaiting()

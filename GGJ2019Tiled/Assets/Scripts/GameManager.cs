@@ -51,6 +51,18 @@ namespace Assets.Scripts
             };
         }
 
+        void Update()
+        {
+            if (Input.GetButtonUp("Submit"))
+            {
+                TryEnd();
+            }
+            else if (Input.GetButtonUp("Cancel"))
+            {
+                Application.Quit();
+            }
+        }
+
         public PlayerNameText SpawnNameText()
         {
             return Instantiate(NamePrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerNameText>();
