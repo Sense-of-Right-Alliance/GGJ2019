@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 304392661759878118}
   - component: {fileID: 5667297664508609184}
   m_Layer: 12
-  m_Name: BananaGuardian
+  m_Name: StrawberryGuardian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f88e7766a6b068e4687fbdd4888b40d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b7a89f6b28e84f64f8b288bd1aec42fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootTime: 2
-  projectilePrefab: {fileID: 2932711735601812379, guid: 3f23aaefa62964448ac043bdd599bb45,
+  projectilePrefab: {fileID: 2932711735601812379, guid: f059c530b9a607e4c8b68fa37d82aeec,
     type: 3}
   Activated: 0
 --- !u!95 &12033351363546885
