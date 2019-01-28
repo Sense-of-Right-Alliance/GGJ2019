@@ -72,7 +72,6 @@ public class Invader : MonoBehaviour
     public void OnHit()
     {
         Instantiate<GameObject>(squashed, transform.position, Quaternion.identity);
-
         player.HandleInvaderKilled();
     }
 }
